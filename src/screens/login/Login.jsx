@@ -3,11 +3,15 @@ import { StyleSheet } from "react-native";
 import { View } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { colorThree, colorTwo } from "../../config/default/colorsDefault";
+import googleSignIn from "../../config/auth/googleSignIn";
 
-function Login() {
+function Login({ navigation }) {
+  function btnG() {
+    googleSignIn(navigation);
+  }
   return (
     <View style={styles.view1}>
-      <TouchableOpacity style={styles.touch}>
+      <TouchableOpacity style={styles.touch} onPress={btnG}>
         <View style={styles.view2}>
           <AntDesign name="google" size={30} color={"black"} />
         </View>
