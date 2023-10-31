@@ -18,7 +18,7 @@ function Routes() {
     <SafeAreaView style={{ flex: 1 }}>
       <NavigationContainer>
         <Tab.Navigator
-          initialRouteName="Login"
+          initialRouteName="Produtos"
           screenOptions={({ route }) => ({
             tabBarIcon: ({ color, size }) => {
               const iconsNavig = iconNav(route, color, size);

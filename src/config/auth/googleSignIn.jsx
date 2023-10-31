@@ -26,7 +26,7 @@ async function googleSignIn(navigation) {
     await addNewUser({ userDbInfo, refDoc });
   } else {
     console.log("nao é novo usuario");
-    navigation.navigate("Sales");
+    navigation.navigate("Produtos");
   }
 }
 export default googleSignIn;
