@@ -1,11 +1,10 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import Routes from "./src/config/routes/Routes";
+import { StyleSheet, View } from "react-native";
+import Starting from "./src/config/routes/Starting";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Routes />
+      <Starting />
     </View>
   );
 }

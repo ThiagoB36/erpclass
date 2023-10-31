@@ -3,13 +3,15 @@ import { auth } from "../firebase/firebaseConfig";
 import getFBInfo from "../../screens/login/actions/getFBInfo";
 import { doc } from "firebase/firestore";
 import addNewUser from "../../screens/login/actions/addNewUser";
+import store from "../store/store";
+import { changeUser } from "../store/userSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 async function googleSignIn(navigation) {
   const provider = new GoogleAuthProvider();
   const result = await signInWithPopup(auth, provider);
   const userData = result.user;
 
-  console.log({ userData });
   const dbInfo = await getFBInfo(userData);
   const { condNewUser, refColl, arrUser } = dbInfo;
 
@@ -22,10 +24,18 @@ async function googleSignIn(navigation) {
 
   const refDoc = doc(refColl);
 
+  async function setItem() {
+    await AsyncStorage.setItem("erpclassId", userDbInfo.docId);
+  }
+
   if (condNewUser) {
     await addNewUser({ userDbInfo, refDoc });
+    store.dispatch(changeUser(userDbInfo));
+    setItem();
+    navigation.navigate("Produtos");
   } else {
-    console.log("nao é novo usuario");
+    store.dispatch(changeUser(userDbInfo));
+    setItem();
     navigation.navigate("Produtos");
   }
 }
