@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 import { TextInput } from "react-native";
 import { Text } from "react-native";
 import { View } from "react-native";
+import store from "../config/store/store";
 
 function TxtIpt(props) {
   const { label, change, pHolder, mask, textAlign, editable, marginLeft } =
@@ -32,7 +33,10 @@ function TxtIpt(props) {
   });
 
   const [sttDefault, setDefault] = useState("");
+  store.dispatch(change(sttDefault));
+  const str = store.getState();
 
+  console.log({ str });
   return (
     <View style={{ flexDirection: "row", width: "100%" }}>
       <View style={{ width: "50%", alignItems: "center" }}>

@@ -4,22 +4,25 @@ import { View } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { colorThree, colorTwo } from "../../config/default/colorsDefault";
 import googleSignIn from "../../config/auth/googleSignIn";
+import PrivateLogin from "../../components/PrivateLogin";
 
 function Login({ navigation }) {
   function btnG() {
     googleSignIn(navigation);
   }
   return (
-    <View style={styles.view1}>
-      <TouchableOpacity style={styles.touch} onPress={btnG}>
-        <View style={styles.view2}>
-          <AntDesign name="google" size={30} color={"black"} />
-        </View>
-        <View style={styles.view3}>
-          <Text style={styles.txt}>Continuar com google</Text>
-        </View>
-      </TouchableOpacity>
-    </View>
+    <PrivateLogin navigation={navigation}>
+      <View style={styles.view1}>
+        <TouchableOpacity style={styles.touch} onPress={btnG}>
+          <View style={styles.view2}>
+            <AntDesign name="google" size={30} color={"black"} />
+          </View>
+          <View style={styles.view3}>
+            <Text style={styles.txt}>Continuar com google</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </PrivateLogin>
   );
 }
 export default Login;

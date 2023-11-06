@@ -1,10 +1,10 @@
 import { StyleSheet, View } from "react-native";
-import Starting from "./src/config/routes/Starting";
+import Routes from "./src/config/routes/Routes";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Starting />
+      <Routes />
     </View>
   );
 }

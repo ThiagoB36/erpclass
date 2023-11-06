@@ -3,8 +3,18 @@ import { container } from "../../config/default/stlPages";
 import { colorFour, colorThree } from "../../config/default/colorsDefault";
 import TxtIpt from "../../components/TxtIpt";
 import { useState } from "react";
+import Private from "../../components/Private";
+import {
+  changeProdsBrand,
+  changeProdsCode,
+  changeProdsCost,
+  changeProdsModel,
+  changeProdsName,
+  changeProdsPrice,
+  changeProdsStock,
+} from "../../config/store/prodsSlice";
 
-function Products() {
+function Products({ navigation }) {
   const [sttOn, setOn] = useState(false);
 
   const [sttSave, setSave] = useState(false);
@@ -21,30 +31,32 @@ function Products() {
   function AddProdsForm() {
     return (
       <View style={styles.box}>
-        <TxtIpt label="Código do Produto" />
-        <TxtIpt label="Nome do Produto" />
-        <TxtIpt label="Marca" />
-        <TxtIpt label="Modelo" />
-        <TxtIpt label="Valor de Custo" />
-        <TxtIpt label="Valor de Venda" />
-        <TxtIpt label="Quantidade em Estoque" />
+        <TxtIpt label="Código do Produto" change={changeProdsCode} />
+        <TxtIpt label="Nome do Produto" change={changeProdsName} />
+        <TxtIpt label="Marca" change={changeProdsBrand} />
+        <TxtIpt label="Modelo" change={changeProdsModel} />
+        <TxtIpt label="Valor de Custo" change={changeProdsCost} />
+        <TxtIpt label="Valor de Venda" change={changeProdsPrice} />
+        <TxtIpt label="Quantidade em Estoque" change={changeProdsStock} />
       </View>
     );
   }
   return (
-    <View style={container}>
-      <View style={styles.box}>
-        <TouchableOpacity
-          style={styles.btn}
-          onPress={sttSave ? btnSave : btnAdd}
-        >
-          <Text style={styles.txt}>
-            {sttSave ? "Salvar Produto" : "Adicionar Produtos"}
-          </Text>
-        </TouchableOpacity>
-        {sttOn && <AddProdsForm />}
+    <Private navigation={navigation}>
+      <View style={container}>
+        <View style={styles.box}>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={sttSave ? btnSave : btnAdd}
+          >
+            <Text style={styles.txt}>
+              {sttSave ? "Salvar Produto" : "Adicionar Produtos"}
+            </Text>
+          </TouchableOpacity>
+          {sttOn && <AddProdsForm />}
+        </View>
       </View>
-    </View>
+    </Private>
   );
 }
 export default Products;
